@@ -6,12 +6,14 @@ import java.util.HashMap;
 import org.bukkit.ChatColor;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.mcmmo.mcmmomc.commands.MiscCommand;
 import org.mcmmo.mcmmomc.commands.TradeCommand;
 import org.mcstats.Metrics;
 
 public class mcMMOmc extends JavaPlugin {
 	// Player -> Channel
 	private HashMap<String, String> enabled = new HashMap<String, String>();
+	private HashMap<String, String> left = new HashMap<String, String>();
 
 	@Override
 	public void onEnable() {
@@ -45,6 +47,18 @@ public class mcMMOmc extends JavaPlugin {
 
 	public void disable(String playerName, String channelName) {
 		if(hasEnabled(playerName, channelName)) enabled.remove(playerName);
+	}
+
+	public boolean hasLeft(String playerName, String channelName) {
+		return left.containsKey(playerName) && left.get(playerName) != null && left.get(playerName).equals(channelName);
+	}
+
+	public void leave(String playerName, String channelName) {
+		left.put(playerName, channelName);
+	}
+
+	public void join(String playerName, String channelName) {
+		if(hasLeft(playerName, channelName)) left.remove(playerName);
 	}
 
 	private void metrics() {
