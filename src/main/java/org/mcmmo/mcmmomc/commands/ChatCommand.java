@@ -77,6 +77,10 @@ public abstract class ChatCommand implements CommandExecutor {
 		plugin.getLogger().info(logMessage);
 	}
 
+	public String getName() {
+		return name;
+	}
+
 	protected String buildChatMessage(String[] args, int index) {
 		StringBuilder builder = new StringBuilder();
 		builder.append(args[index]);

@@ -6,8 +6,10 @@ import java.util.HashMap;
 import org.bukkit.ChatColor;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.mcmmo.mcmmomc.commands.ChatCommand;
 import org.mcmmo.mcmmomc.commands.MiscCommand;
 import org.mcmmo.mcmmomc.commands.TradeCommand;
+import org.mcmmo.mcmmomc.listeners.ChatListener;
 import org.mcstats.Metrics;
 
 public class mcMMOmc extends JavaPlugin {
@@ -15,19 +17,27 @@ public class mcMMOmc extends JavaPlugin {
 	private HashMap<String, String> enabled = new HashMap<String, String>();
 	private HashMap<String, String> left = new HashMap<String, String>();
 
+	private HashMap<String, ChatCommand> commands = new HashMap<String, ChatCommand>();
+
 	@Override
 	public void onEnable() {
+		ChatCommand trade = new TradeCommand(this);
+		ChatCommand misc = new MiscCommand(this);
+
+		commands.put(trade.getName(), trade);
+		commands.put(misc.getName(), misc);
+
 		PluginCommand tradeCommand = getCommand("tradechat");
 		tradeCommand.setPermission("mcmmomc.trade");
 		tradeCommand.setPermissionMessage(ChatColor.DARK_RED + "Insufficient permissions.");
-		tradeCommand.setExecutor(new TradeCommand(this));
+		tradeCommand.setExecutor(trade);
 
 		PluginCommand miscCommand = getCommand("miscchat");
 		miscCommand.setPermission("mcmmomc.misc");
 		miscCommand.setPermissionMessage(ChatColor.DARK_RED + "Insufficient permissions.");
-		miscCommand.setExecutor(new MiscCommand(this));
+		miscCommand.setExecutor(misc);
 
-		// TODO: Setup listener for chat
+		getServer().getPluginManager().registerEvents(new ChatListener(this), this);
 
 		metrics();
 
@@ -39,8 +49,16 @@ public class mcMMOmc extends JavaPlugin {
 		getLogger().info("Finished Unloading " + getDescription().getFullName());
 	}
 
+	public boolean hasEnabled(String playerName) {
+		return enabled.containsKey(playerName) && enabled.get(playerName) != null;
+	}
+
 	public boolean hasEnabled(String playerName, String channelName) {
 		return enabled.containsKey(playerName) && enabled.get(playerName) != null && enabled.get(playerName).equals(channelName);
+	}
+
+	public String getEnabled(String playerName) {
+		return enabled.get(playerName);
 	}
 
 	public void enable(String playerName, String channelName) {
@@ -61,6 +79,10 @@ public class mcMMOmc extends JavaPlugin {
 
 	public void join(String playerName, String channelName) {
 		if(hasLeft(playerName, channelName)) left.remove(playerName);
+	}
+
+	public void handleChat(String channelName, String playerName, String message) {
+		commands.get(channelName).handleChat(playerName, message);
 	}
 
 	private void metrics() {
