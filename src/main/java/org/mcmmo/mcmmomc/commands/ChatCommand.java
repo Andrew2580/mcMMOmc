@@ -29,6 +29,11 @@ public abstract class ChatCommand implements CommandExecutor {
 					disable(sender);
 					sender.sendMessage(name + " Chat only " + ChatColor.RED + "Off");
 				} else {
+					if(hasLeft(sender)) {
+						join(sender);
+						sender.sendMessage("You have " + ChatColor.GREEN + "joined " + color + name);
+					}
+
 					enable(sender);
 					sender.sendMessage(name + " Chat only " + ChatColor.GREEN + "On");
 				}
