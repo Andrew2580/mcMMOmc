@@ -3,13 +3,9 @@ package org.mcmmo.mcmmomc;
 import java.io.IOException;
 import java.util.HashMap;
 
-import org.bukkit.ChatColor;
-import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import org.mcmmo.mcmmomc.commands.ChatCommand;
-import org.mcmmo.mcmmomc.commands.MiscCommand;
-import org.mcmmo.mcmmomc.commands.TradeCommand;
 import org.mcmmo.mcmmomc.listeners.ChatListener;
 
 import org.mcstats.Metrics;
@@ -19,26 +15,10 @@ public class mcMMOmc extends JavaPlugin {
 	private HashMap<String, String> enabled = new HashMap<String, String>();
 	private HashMap<String, String> left = new HashMap<String, String>();
 
-	private HashMap<String, ChatCommand> commands = new HashMap<String, ChatCommand>();
+	protected HashMap<String, ChatCommand> commands = new HashMap<String, ChatCommand>();
 
 	@Override
 	public void onEnable() {
-		ChatCommand trade = new TradeCommand(this);
-		ChatCommand misc = new MiscCommand(this);
-
-		commands.put(trade.getName(), trade);
-		commands.put(misc.getName(), misc);
-
-		PluginCommand tradeCommand = getCommand("tradechat");
-		tradeCommand.setPermission("mcmmomc.trade");
-		tradeCommand.setPermissionMessage(ChatColor.DARK_RED + "Insufficient permissions.");
-		tradeCommand.setExecutor(trade);
-
-		PluginCommand miscCommand = getCommand("miscchat");
-		miscCommand.setPermission("mcmmomc.misc");
-		miscCommand.setPermissionMessage(ChatColor.DARK_RED + "Insufficient permissions.");
-		miscCommand.setExecutor(misc);
-
 		getServer().getPluginManager().registerEvents(new ChatListener(this), this);
 
 		metrics();

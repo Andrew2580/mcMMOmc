@@ -1,0 +1,22 @@
+#
+#    mcMMO more channels config
+#
+#    __NAME__         -> Player's name
+#    __DISPLAY_NAME__ -> Player's display name
+#    __MESSAGE__      -> The message to be sent
+#
+#    Color codes in format should be prefixed with an &
+#
+#    color is used on join/leave and enable/disable messages
+#    format is used for sending messages to users
+#    log_format is used for logging messages to console
+#
+####
+Trade:
+    color: GOLD
+    format: "&6{&r__NAME__&6} __MESSAGE__"
+    log_format: "[T]<__NAME__> __MESSAGE__"
+Misc:
+    color: DARK_AQUA
+    format: "&3{&r__NAME__&3} __MESSAGE__"
+    log_format: "[M]<__NAME__> __MESSAGE__"

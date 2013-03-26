@@ -10,15 +10,19 @@ import org.mcmmo.mcmmomc.mcMMOmc;
 
 import com.gmail.nossr50.api.ChatAPI;
 
-public abstract class ChatCommand implements CommandExecutor {
+public class ChatCommand implements CommandExecutor {
 	protected mcMMOmc plugin;
 	protected String name;
 	protected ChatColor color;
 	protected String format;
 	protected String logFormat;
 
-	public ChatCommand(mcMMOmc plugin) {
+	public ChatCommand(mcMMOmc plugin, String name, ChatColor color, String format, String logFormat) {
 		this.plugin = plugin;
+		this.name = name;
+		this.color = color;
+		this.format = format;
+		this.logFormat = logFormat;
 	}
 
 	@Override
