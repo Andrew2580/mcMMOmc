@@ -27,10 +27,10 @@ public abstract class ChatCommand implements CommandExecutor {
 			case 0:
 				if(isEnabled(sender)) {
 					disable(sender);
-					// TODO: Enable message
+					sender.sendMessage(name + " Chat only " + ChatColor.RED + "Off");
 				} else {
 					enable(sender);
-					// TODO: Disable message
+					sender.sendMessage(name + " Chat only " + ChatColor.GREEN + "On");
 				}
 				return true;
 
