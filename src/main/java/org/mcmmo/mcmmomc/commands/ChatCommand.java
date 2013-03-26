@@ -54,6 +54,11 @@ public abstract class ChatCommand implements CommandExecutor {
 					if(hasLeft(sender)) {
 						sender.sendMessage(ChatColor.DARK_RED + "You are not in " + color + name);
 					} else {
+						if(isEnabled(sender)) {
+							disable(sender);
+							sender.sendMessage(name + " Chat only " + ChatColor.RED + "Off");
+						}
+
 						leave(sender);
 						sender.sendMessage("You have " + ChatColor.RED + "left " + color + name);
 					}
