@@ -62,7 +62,7 @@ public abstract class ChatCommand implements CommandExecutor {
 		String sendMessage = format.replace("__NAME__", sender.getName()).replace("__MESSAGE__", message);
 		String logMessage = logFormat.replace("__NAME__", sender.getName()).replace("__MESSAGE__", message);
 		for(Player player : plugin.getServer().getOnlinePlayers()) {
-			if(player.hasPermission("mcmmomc.tradechat") && !plugin.hasLeft(sender.getName(), name)) {
+			if(player.hasPermission("mcmmomc." + name.toLowerCase() + "chat") && !plugin.hasLeft(sender.getName(), name)) {
 				player.sendMessage(sendMessage);
 			}
 		}
