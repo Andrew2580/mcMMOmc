@@ -19,6 +19,8 @@ public class mcMMOmc extends JavaPlugin {
 
 	@Override
 	public void onEnable() {
+		Config.load(this);
+
 		getServer().getPluginManager().registerEvents(new ChatListener(this), this);
 
 		metrics();
