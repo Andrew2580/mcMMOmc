@@ -74,15 +74,19 @@ public class ChatCommand implements CommandExecutor {
 				if(hasLeft(sender)) {
 					sender.sendMessage(ChatColor.DARK_RED + "You are not in " + color + name);
 				} else {
-					handleChat(sender.getName(), buildChatMessage(args, 0));
+					if(sender instanceof Player) {
+						handleChat(sender.getName(), ((Player) sender).getDisplayName(), buildChatMessage(args, 0));
+					} else {
+						handleChat(sender.getName(), sender.getName(), buildChatMessage(args, 0));
+					}
 				}
 				return true;
 		}
 	}
 
-	public void handleChat(String playerName, String message) {
-		String sendMessage = format.replace("__NAME__", playerName).replace("__MESSAGE__", message);
-		String logMessage = logFormat.replace("__NAME__", playerName).replace("__MESSAGE__", message);
+	public void handleChat(String playerName, String displayName, String message) {
+		String sendMessage = ChatColor.translateAlternateColorCodes('&', format.replace("__NAME__", playerName).replace("__DISPLAY_NAME__", displayName).replace("__MESSAGE__", message));
+		String logMessage = ChatColor.translateAlternateColorCodes('&', logFormat.replace("__NAME__", playerName).replace("__DISPLAY_NAME__", displayName).replace("__MESSAGE__", message));
 		for(Player player : plugin.getServer().getOnlinePlayers()) {
 			if(player.hasPermission("mcmmomc." + name.toLowerCase()) && !plugin.hasLeft(player.getName(), name)) {
 				player.sendMessage(sendMessage);

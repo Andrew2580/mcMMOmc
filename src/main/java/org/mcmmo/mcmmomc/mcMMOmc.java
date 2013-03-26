@@ -65,8 +65,8 @@ public class mcMMOmc extends JavaPlugin {
 		if(hasLeft(playerName, channelName)) left.remove(playerName);
 	}
 
-	public void handleChat(String channelName, String playerName, String message) {
-		commands.get(channelName).handleChat(playerName, message);
+	public void handleChat(String channelName, String playerName, String displayName, String message) {
+		commands.get(channelName).handleChat(playerName, displayName, message);
 	}
 
 	private void metrics() {
