@@ -7,6 +7,8 @@ import org.mcmmo.mcmmomc.commands.ChatCommand;
 
 public class Config {
 	public static void load(mcMMOmc plugin) {
+		plugin.saveDefaultConfig();
+
 		String[] channels = { "Trade", "Misc" };
 		for(String channel : channels) {
 			try {
