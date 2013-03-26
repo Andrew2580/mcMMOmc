@@ -6,10 +6,12 @@ import java.util.HashMap;
 import org.bukkit.ChatColor;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
+
 import org.mcmmo.mcmmomc.commands.ChatCommand;
 import org.mcmmo.mcmmomc.commands.MiscCommand;
 import org.mcmmo.mcmmomc.commands.TradeCommand;
 import org.mcmmo.mcmmomc.listeners.ChatListener;
+
 import org.mcstats.Metrics;
 
 public class mcMMOmc extends JavaPlugin {
