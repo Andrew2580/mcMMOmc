@@ -57,7 +57,11 @@ public abstract class ChatCommand implements CommandExecutor {
 				// Fallthrough
 
 			default:
-				handleChat(sender, buildChatMessage(args, 0));
+				if(hasLeft(sender)) {
+					sender.sendMessage(ChatColor.DARK_RED + "You are not in " + color + name);
+				} else {
+					handleChat(sender, buildChatMessage(args, 0));
+				}
 				return true;
 		}
 	}
