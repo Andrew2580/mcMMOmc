@@ -42,7 +42,7 @@ public abstract class ChatCommand implements CommandExecutor {
 						sender.sendMessage(ChatColor.DARK_RED + "You are already in " + color + name);
 					} else {
 						join(sender);
-						// TODO: Join message
+						sender.sendMessage("You have " + ChatColor.GREEN + "joined " + color + name);
 					}
 					return true;
 				} else if(args[0].equalsIgnoreCase("leave")) {
@@ -50,7 +50,7 @@ public abstract class ChatCommand implements CommandExecutor {
 						sender.sendMessage(ChatColor.DARK_RED + "You are not in " + color + name);
 					} else {
 						leave(sender);
-						// TODO: Part message
+						sender.sendMessage("You have " + ChatColor.RED + "left " + color + name);
 					}
 					return true;
 				}
