@@ -3,3 +3,32 @@ main: org.mcmmo.mcmmomc.mcMMOmc
 version: ${project.version}
 author: NuclearW
 description: mcMMO more channels adds a few new channels that function similar to mcMMO channels, and integrate with them properly.
+commands:
+    miscchat:
+        aliases: [mc, m]
+        description: Toggle misc chat, send trade chat messages, join, or leave misc chat
+        usage: |
+            /<command> join
+            /<command> leave
+            /<command> <message...>
+            /<command>
+    tradechat:
+        aliases: [tc, t]
+        description: Toggle trade chat, send trade chat messages, join, or leave trade chat
+        usage: |
+            /<command> join
+            /<command> leave
+            /<command> <message...>
+            /<command>
+permissions:
+    mcmmomc.*:
+        description: Gives access to all mcMMOmc commands
+        children:
+            mcmmomc.misc: true
+            mcmmomc.trade: true
+    mcmmomc.misc:
+        description: Allows you to use trade chat
+        default: true
+    mcmmomc.trade:
+        description: Allows you to use trade chat
+        default: true
