@@ -8,7 +8,7 @@ public class MiscCommand extends ChatCommand {
 		super(plugin);
 		this.name = "Misc";
 		this.color = ChatColor.DARK_AQUA;
-		this.format = color + "{" + ChatColor.WHITE + "__NAME__" + color + "}" + ChatColor.WHITE + "__MESSAGE__";
+		this.format = color + "{" + ChatColor.WHITE + "__NAME__" + color + "}" + ChatColor.WHITE + " __MESSAGE__";
 		this.logFormat = "[M]<__NAME__> __MESSAGE__";
 	}
 }
