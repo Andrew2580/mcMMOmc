@@ -27,8 +27,10 @@ public abstract class ChatCommand implements CommandExecutor {
 			case 0:
 				if(isEnabled(sender)) {
 					disable(sender);
+					// TODO: Enable message
 				} else {
 					enable(sender);
+					// TODO: Disable message
 				}
 				return true;
 
@@ -40,6 +42,7 @@ public abstract class ChatCommand implements CommandExecutor {
 						sender.sendMessage(ChatColor.DARK_RED + "You are already in " + color + name);
 					} else {
 						join(sender);
+						// TODO: Join message
 					}
 					return true;
 				} else if(args[0].equalsIgnoreCase("leave")) {
@@ -47,6 +50,7 @@ public abstract class ChatCommand implements CommandExecutor {
 						sender.sendMessage(ChatColor.DARK_RED + "You are not in " + color + name);
 					} else {
 						leave(sender);
+						// TODO: Part message
 					}
 					return true;
 				}
@@ -88,6 +92,8 @@ public abstract class ChatCommand implements CommandExecutor {
 	private void enable(CommandSender sender) {
 		String playerName = sender.getName();
 		plugin.enable(playerName, name);
+
+		// These API methods do not currently send messages, need to be changed to support such.
 		if(ChatAPI.isUsingAdminChat(playerName)) ChatAPI.toggleAdminChat(playerName);
 		if(ChatAPI.isUsingPartyChat(playerName)) ChatAPI.togglePartyChat(playerName);
 	}

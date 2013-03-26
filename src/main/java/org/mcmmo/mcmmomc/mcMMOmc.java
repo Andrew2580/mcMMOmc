@@ -27,6 +27,8 @@ public class mcMMOmc extends JavaPlugin {
 		miscCommand.setPermissionMessage(ChatColor.DARK_RED + "Insufficient permissions.");
 		miscCommand.setExecutor(new MiscCommand(this));
 
+		// TODO: Setup listener for chat
+
 		metrics();
 
 		getLogger().info("Finished Loading " + getDescription().getFullName());
