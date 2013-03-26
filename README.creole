@@ -1,0 +1,7 @@
+== mcMMOmc
+
+mcMMO more channels, adds a few new channels that function similar to mcMMO channels, and integrate with them properly.
+
+=== Compiling
+
+Maven 3 is required to compile mcMMOmc

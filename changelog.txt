@@ -1,0 +1,9 @@
+Key:
+  + Addition
+  = Fix
+  ! Change
+  - Removal
+
+Version 0.1
+ + Added everything, first release!
+ 
