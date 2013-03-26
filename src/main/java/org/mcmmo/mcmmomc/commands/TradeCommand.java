@@ -9,6 +9,7 @@ public class TradeCommand extends ChatCommand {
 		super(plugin);
 		this.name = "Trade";
 		this.color = ChatColor.GOLD;
+		this.format = color + "{" + ChatColor.WHITE + "__NAME__" + color + "}" + ChatColor.WHITE + "__MESSAGE__";
 	}
 
 	@Override

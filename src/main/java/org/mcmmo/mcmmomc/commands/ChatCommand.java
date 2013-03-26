@@ -14,6 +14,7 @@ public abstract class ChatCommand implements CommandExecutor {
 
 	protected String name;
 	protected ChatColor color;
+	protected String format;
 
 	public ChatCommand(mcMMOmc plugin) {
 		this.plugin = plugin;
