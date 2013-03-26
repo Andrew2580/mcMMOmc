@@ -21,9 +21,9 @@ public class mcMMOmc extends JavaPlugin {
 		tradeCommand.setExecutor(new TradeCommand(this));
 
 		PluginCommand miscCommand = getCommand("miscchat");
-		tradeCommand.setPermission("mcmmomc.misc");
-		tradeCommand.setPermissionMessage(ChatColor.DARK_RED + "Insufficient permissions.");
-		tradeCommand.setExecutor(new MiscCommand(this));
+		miscCommand.setPermission("mcmmomc.misc");
+		miscCommand.setPermissionMessage(ChatColor.DARK_RED + "Insufficient permissions.");
+		miscCommand.setExecutor(new MiscCommand(this));
 
 		metrics();
 
