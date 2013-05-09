@@ -16,8 +16,9 @@ public class ChatCommand implements CommandExecutor {
 	protected ChatColor color;
 	protected String format;
 	protected String logFormat;
+	protected boolean colorCodes;
 
-	public ChatCommand(mcMMOmc plugin, String name, ChatColor color, String format, String logFormat) {
+	public ChatCommand(mcMMOmc plugin, String name, ChatColor color, String format, String logFormat, boolean colorCodes) {
 		this.plugin = plugin;
 		this.name = name;
 		this.color = color;
@@ -85,7 +86,12 @@ public class ChatCommand implements CommandExecutor {
 	}
 
 	public void handleChat(String playerName, String displayName, String message) {
-		String sendMessage = ChatColor.translateAlternateColorCodes('&', format.replace("__NAME__", playerName).replace("__DISPLAY_NAME__", displayName).replace("__MESSAGE__", message));
+		String sendMessage = ChatColor.translateAlternateColorCodes('&', format.replace("__NAME__", playerName).replace("__DISPLAY_NAME__", displayName));
+		if(colorCodes) {
+			sendMessage = ChatColor.translateAlternateColorCodes('&', sendMessage.replace("__MESSAGE__", message));
+		} else {
+			sendMessage = sendMessage.replace("__MESSAGE__", message);
+		}
 		String logMessage = ChatColor.translateAlternateColorCodes('&', logFormat.replace("__NAME__", playerName).replace("__DISPLAY_NAME__", displayName).replace("__MESSAGE__", message));
 		for(Player player : plugin.getServer().getOnlinePlayers()) {
 			if(player.hasPermission("mcmmomc." + name.toLowerCase()) && !plugin.hasLeft(player.getName(), name)) {

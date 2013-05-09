@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.mcmmo</groupId>
     <artifactId>mcMMOmc</artifactId>
-    <version>0.1-dev</version>
+    <version>0.2-dev</version>
     <name>mcMMOmc</name>
     <url>https://github.com/mcMMO-Dev/mcMMOmc</url>
     <issueManagement>

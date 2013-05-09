@@ -4,6 +4,8 @@ Key:
   ! Change
   - Removal
 
+Version 0.2
+ + Added color_codes config option
+
 Version 0.1
  + Added everything, first release!
- 

@@ -16,8 +16,9 @@ public class Config {
 				ChatColor color = ChatColor.valueOf(colorName);
 				String format = plugin.getConfig().getString(channel + ".format");
 				String logFormat = plugin.getConfig().getString(channel + ".log_format");
+				boolean colorCodes = plugin.getConfig().getBoolean(channel + ".color_codes");
 
-				ChatCommand command = new ChatCommand(plugin, channel, color, format, logFormat);
+				ChatCommand command = new ChatCommand(plugin, channel, color, format, logFormat, colorCodes);
 				plugin.commands.put(channel, command);
 
 				PluginCommand pluginCommand = plugin.getCommand(channel.toLowerCase() + "chat");
